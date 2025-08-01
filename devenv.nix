@@ -5,7 +5,21 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = with pkgs; [ 
+                alsa-lib.dev
+                udev.dev
+                xorg.libX11
+                xorg.libXrandr
+                xorg.libXcursor
+                xorg.libxcb
+                xorg.libXi
+                wayland
+                libxkbcommon
+                libxkbcommon.dev
+                vulkan-loader
+                vulkan-tools
+                glfw
+  ];
 
   # https://devenv.sh/languages/
   languages.rust = {
