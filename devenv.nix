@@ -1,25 +1,36 @@
 { pkgs, lib, config, inputs, ... }:
-
+let buildInputs = with pkgs; [
+  udev
+  alsa-lib-with-plugins
+  vulkan-loader
+  xorg.libX11
+  xorg.libXcursor
+  xorg.libXi
+  xorg.libXrandr
+  libxkbcommon
+  wayland
+];
+in
 {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = with pkgs; [ 
-                alsa-lib.dev
-                udev.dev
-                xorg.libX11
-                xorg.libXrandr
-                xorg.libXcursor
-                xorg.libxcb
-                xorg.libXi
-                wayland
-                libxkbcommon
-                libxkbcommon.dev
-                vulkan-loader
-                vulkan-tools
-                glfw
+  packages = with pkgs; [
+    udev
+    alsa-lib-with-plugins
+    vulkan-loader
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXrandr
+    libxkbcommon
+    wayland
   ];
+
+  env = {
+    LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
+  };
 
   # https://devenv.sh/languages/
   languages.rust = {
