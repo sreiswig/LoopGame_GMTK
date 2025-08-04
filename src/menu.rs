@@ -122,4 +122,25 @@ fn menu_setup(mut menu_state: ResMut<NextState<MenuState>>) {
     menu_state.set(MenuState::Main);
 }
 
-fn main_menu_setup(mut commands: Commands) {}
+fn main_menu_setup(mut commands: Commands) {
+    let button_node = Node {
+        width: Val::Px(300.0),
+        height: Val::Px(65.0),
+        margin: UiRect::all(Val::Px(20.0)),
+        justify_content: JustifyContent::Center,
+        align_items: AlignItems::Center,
+        ..default()
+    };
+    let button_icon_node = Node {
+        width: Val::Px(30.0),
+        position_type: PositionType::Absolute,
+        left: Val::Px(10.0),
+        ..default()
+    };
+    let button_text_font = TextFont {
+        font_size: 33.0,
+        ..default()
+    };
+
+    commands.spawn(())
+}
